@@ -1,24 +1,23 @@
 let kiezersTabel = document.getElementById("kiezersTabel");
 let knop = document.getElementById("knop");
-knop.addEventListener("click", toonAlleKiezers);
+knop.addEventListener("click", haalAlleVotersOp);
 
-function toonAlleKiezers() {
+function toonAlleKiezers(deData) {
     console.log(kiezersTabel);
 
-    let deData = proefData();
     console.log(deData);
 
     for (let i = 0; i < deData.length; i++) {
         kiezersTabel.innerHTML +=
             `<tr>
         <td>
-            ${deData[i].naam}
+            ${deData[i].firstName}
         </td>
         <td>
-            ${deData[i].leeftijd}
+            ${deData[i].lastName}
         </td>
         <td>
-            ${deData[i].city}
+            ${deData[i].dob}
         </td>
     </tr>`
     }
@@ -29,6 +28,7 @@ function haalAlleVotersOp() {
     var oReq = new XMLHttpRequest();
     oReq.onreadystatechange = function () {
         if(this.readyState == 4) {
+            toonAlleKiezers(JSON.parse(this.responseText));
             console.log(this.responseText);
         }
     }

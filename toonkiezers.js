@@ -5,6 +5,7 @@ knop.addEventListener("click", haalAlleVotersOp);
 function toonAlleKiezers(deData) {
     console.log(kiezersTabel);
 
+    kiezersTabel.innerHTML
     console.log(deData);
 
     for (let i = 0; i < deData.length; i++) {
@@ -17,7 +18,13 @@ function toonAlleKiezers(deData) {
             ${deData[i].lastName}
         </td>
         <td>
+            ${deData[i].email}
+        </td>
+        <td>
             ${deData[i].dob}
+        </td>
+        <td>
+            ${deData[i].residence}
         </td>
     </tr>`
     }
@@ -25,7 +32,7 @@ function toonAlleKiezers(deData) {
 
 function haalAlleVotersOp() {
     let url = "http://localhost:8082/voter/list";
-    var oReq = new XMLHttpRequest();
+    let oReq = new XMLHttpRequest();
     oReq.onreadystatechange = function () {
         if(this.readyState == 4) {
             toonAlleKiezers(JSON.parse(this.responseText));

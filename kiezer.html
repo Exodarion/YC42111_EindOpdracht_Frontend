@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiezer</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<body>
+
+<h2 id="voerIn" style='display: block' class="text-center">Voer hier uw gegevens in</h2>
+<h2 id="success" class="text-center text-success" style="display: none">Uw gegevens zijn ingevoerd!</h2>
+<br>
+<div class="form-group text-center">
+    <label for="voornaam">Voornaam:</label><br><input type="text" id="voornaam" name="voornaam">
+    <br><br>
+    <label for="achternaam">Achternaam:</label><br><input type="text" id="achternaam" name="achternaam">
+    <br><br>
+    <label for="geboortedatum">Geboortedatum:</label><br><input type="date" id="geboortedatum" name="geboortedatum">
+    <br><br>
+    <label for="woonplaats">Woonplaats:</label><br><input type="text" id="woonplaats">
+    <br><br>
+    <label for="email">E-mail:</label><br><input type="email" id="email" name="email">
+    <br><br><br>
+    <button class="btn btn-primary" onclick="handleForm()">Voeg gegevens toe</button>
+</div>
+<br>
+<p id="error" class="text-center text-danger" style="display: none">Voer voor alle velden correcte waarden in</p>
+</div>
+
+<script src="kiezer.js"></script>
+</body>
+</html>

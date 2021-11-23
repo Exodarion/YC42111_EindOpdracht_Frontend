@@ -11,7 +11,6 @@ function handleForm() {
     if (voornaam.value.length <= 2 || achternaam.value.length <= 2 ||
         geboortedatum == null ||
         email.value.length < 5) {
-        successMessage.style.display = 'none';
         errorMessage.style.display = "block";
         return;
     }

@@ -1,30 +1,23 @@
 let kiezersTabel = document.getElementById("kiezersTabel");
-let knop = document.getElementById("knop");
-knop.addEventListener("click", haalAlleVotersOp);
 
-function toonAlleKiezers(deData) {
-    console.log(kiezersTabel);
-
-    kiezersTabel.innerHTML
-    console.log(deData);
-
-    for (let i = 0; i < deData.length; i++) {
+function toonAlleKiezers(kiezers) {
+    for (let i = 0; i < kiezers.length; i++) {
         kiezersTabel.innerHTML +=
             `<tr>
         <td>
-            ${deData[i].firstName}
+            ${kiezers[i].firstName}
         </td>
         <td>
-            ${deData[i].lastName}
+            ${kiezers[i].lastName}
         </td>
         <td>
-            ${deData[i].email}
+            ${kiezers[i].email}
         </td>
         <td>
-            ${deData[i].dob}
+            ${kiezers[i].dob}
         </td>
         <td>
-            ${deData[i].residence}
+            ${kiezers[i].residence}
         </td>
     </tr>`
     }
@@ -32,15 +25,15 @@ function toonAlleKiezers(deData) {
 
 function haalAlleVotersOp() {
     let url = "http://localhost:8082/voter/list";
-    let oReq = new XMLHttpRequest();
-    oReq.onreadystatechange = function () {
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
         if(this.readyState == 4) {
             toonAlleKiezers(JSON.parse(this.responseText));
             console.log(this.responseText);
         }
     }
-    oReq.open("GET", url);
-    oReq.send();
+    request.open("GET", url);
+    request.send();
 }
 
 function proefData() {

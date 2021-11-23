@@ -1,14 +1,14 @@
-let voornaam = document.getElementById("voornaam");
-let achternaam = document.getElementById("achternaam");
-let geboortedatum = document.getElementById("geboortedatum");
-let email = document.getElementById("email");
-let woonplaats = document.getElementById("woonplaats");
-let voerInHeader = document.getElementById("voerIn");
-let successMessage = document.getElementById("success");
-let errorMessage = document.getElementById("error");
+const voornaam = document.getElementById("voornaam");
+const achternaam = document.getElementById("achternaam");
+const geboortedatum = document.getElementById("geboortedatum");
+const email = document.getElementById("email");
+const woonplaats = document.getElementById("woonplaats");
+const voerInHeader = document.getElementById("voerIn");
+const successMessage = document.getElementById("success");
+const errorMessage = document.getElementById("error");
 
 function handleForm() {
-    if (voornaam.value.length < 2 || achternaam.value.length < 2 ||
+    if (voornaam.value.length <= 2 || achternaam.value.length <= 2 ||
         geboortedatum == null ||
         email.value.length < 5) {
         successMessage.style.display = 'none';

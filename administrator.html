@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Control Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container text-center">
+    <button id="kandidaatBtn" onclick="showKandidaatInvoer()" class="btn btn primary">Kandidaten</button>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <button id="partijBtn" onclick="showPartijInvoer()" class="btn btn primary">Partijen</button>
+    <br>
+    <br>
+    <a href="/toonPartijen.html">Toon alle partijen</a>
+    <br>
+    <br>
+    <p id="successMessage" class="text-success" style="display: none">
+        Uw gegevens zijn succesvol ingevoerd.
+    </p>
+    <br>
+    <br>
+    <div id="partijInvoer" style="display: block">
+        <label for="partijnaam">Partijnaam:</label><br><input type="text" id="partijnaam" name="partijnaam">
+        <br><br>
+        <label for="orientatie">Orientatie:</label><br>
+        <select name="orientatie" id="orientatie">
+            <option value="LINKS">Links</option>
+            <option value="RECHTS">Rechts</option>
+            <option value="MIDDEN">Midden</option>
+        </select>
+        <br><br>
+        <button class="btn btn-primary" onclick="handlePartijForm()" id="partijInvoerBtn">Voeg partij toe</button>
+    </div>
+
+    <div id="kandidaatInvoer" style="display: none">
+
+    </div>
+</div>
+
+<script src="administrator.js"></script>
+</body>
+</html>

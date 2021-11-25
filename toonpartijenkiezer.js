@@ -37,7 +37,7 @@ function toonAllePartijen(partijen){
                 ${partijen[i].pga}
             </td>
             <td>
-                <button class="btn btn-primary" onclick="toonKandidaten()">
+                <button class="btn btn-primary" onclick="toonKandidaten(${partijen[i].id})">
                     Toon kandidaten
                 </button>
             </td>
@@ -46,6 +46,12 @@ function toonAllePartijen(partijen){
         `
     }
     partijenTabel.innerHTML = inhoudInnerhtml;
+}
+
+function toonKandidaten(id) {
+    let myStorage = window.localStorage;
+    myStorage.setItem("laatstAangekliktePartij", id);
+    location.href = "toonkandidaten.html";
 }
 
 haalAllePartijenOp();

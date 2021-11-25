@@ -6,7 +6,7 @@ renderKandidaten();
 renderPartij();
 
 async function getKandidaten() {
-    let partijId = myStorage.getItem("laatstAangekliktePartij")
+    let partijId = myStorage.getItem("laatstAangekliktePartijAdmin")
     let url = 'http://localhost:8082/politicalGroup/members/' + partijId;
     try {
         let res = await fetch(url);

@@ -51,7 +51,11 @@ function toonAllePartijen(partijen){
 function toonKandidaten(id) {
     let myStorage = window.localStorage;
     myStorage.setItem("laatstAangekliktePartij", id);
-    location.href = "toonkandidaten.html";
+    location.href = "toonkandidatenadmin.html";
+}
+
+function voerPartijIn() {
+    // dit wordt uitgevoerd in story 7
 }
 
 haalAllePartijenOp();

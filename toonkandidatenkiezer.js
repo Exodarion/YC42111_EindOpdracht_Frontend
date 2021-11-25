@@ -47,7 +47,7 @@ async function renderKandidaten() {
 }
 
 async function renderPartij() {
-    let partijId = myStorage.getItem("laatstAangekliktePartij");
+    let partijId = myStorage.getItem("laatstAangekliktePartijKiezer");
     let url = `http://localhost:8082/politicalGroup/${partijId}`;
     try {
         let res = await (fetch(url));

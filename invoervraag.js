@@ -1,7 +1,8 @@
-const vraagInvoer = document.getElementById("vraagInvoer");
+
 
 function voegVraagToe(){
     if(vraagInvoer.value.length >= 5){
+        const vraagInvoer = document.getElementById("vraagInvoer");
         console.log(vraagInvoer.value);
 
         const xhreq = new XMLHttpRequest();
@@ -18,16 +19,7 @@ function voegVraagToe(){
 
         location.href = "toonvragenadministrator.html";
 
-        // xhreq.onreadystatechange = function () {
-        //     if (xhreq.readyState === 4) {
-        //         if (xhreq.status === 200) {
-        //             successMessage.style.display = 'block';
-        //             vraagInvoer.value = '';
-                    
-        //         }
-        //     }
-        // }
-
+        
     }
 
 }

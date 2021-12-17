@@ -14,6 +14,7 @@ if( invoer.value.length >= 5){
 
 
 fetch("http://localhost:8082/thesis/add", {
+    method: 'POST',
     body: JSON.stringify(data),
     headers: {
         "Content-type": "application/json; charset=UTF-8"

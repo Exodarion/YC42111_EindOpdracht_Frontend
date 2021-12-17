@@ -11,7 +11,10 @@ function haalAllePartijenOp(){
     request.open("GET", url);
     request.send();
 }
+function gaNaarTest(){
+    window.location = "test.html?vraagid=-1";
 
+}
 function toonAllePartijen(partijen){
     let partijenTabel = document.getElementById("partijenTabel");
     console.log(partijenTabel);

@@ -31,6 +31,7 @@
                     <button class= "btn btn-primary" onclick="verwijderVraag(${d[i].id})">
                     Verwijder vraag
                     </button>
+                </td>
             </tr>   
             `
         }
@@ -44,7 +45,7 @@
 function verwijderVraag(idVraag){
     
 
-    fetch("http://localhost:8082/thesis/remove/"+idVraag,  {
+    fetch("http://localhost:8082/thesis/remove/"+idVraag,  { 
         method: 'DELETE',
         headers: {
             "Content-type": "application/json; charset=UTF-8"

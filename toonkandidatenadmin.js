@@ -48,11 +48,12 @@ async function renderKandidaten() {
 
 async function renderPartij() {
     let partijId = myStorage.getItem("laatstAangekliktePartijAdmin");
-    let url = `http://localhost:8082/politicalGroup/${partijId}`;
+    let url = `http://localhost:8082/politicalGroup/membersByPartyID/${partijId}`;
     try {
         let res = await (fetch(url));
         let partij = await res.json();
-        partijSpan.innerText = partij.name;
+        console.log(partij);
+        partijSpan.innerText = partij[0].politicalGroupName;
     } catch (error) {
         console.log(error);
     }

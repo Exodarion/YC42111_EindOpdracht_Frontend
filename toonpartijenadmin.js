@@ -1,5 +1,7 @@
-function haalAllePartijenOp(){
-    let url = "http://localhost:8082/politicalGroup/list";
+async function haalAllePartijenOp(){
+    let res = await fetch('url.json');
+    let data = await res.json();
+    let url = data.link + "politicalGroup/list";
     let request = new XMLHttpRequest();
 
     request.onreadystatechange = function(){

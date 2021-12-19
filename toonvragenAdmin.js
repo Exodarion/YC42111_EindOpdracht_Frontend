@@ -1,26 +1,31 @@
+toonVragen();
 
+async function toonVragen() {
+    let res = await fetch('url.json');
+    let data = await res.json();
+    let url = data.link;
 
-  fetch("http://localhost:8082/thesis/list")
-    // Handle success
-    .then(response => response.json())  // zet om naar json object
-    .then(d => { // d = array met thesises, het object dat ik uit de response.json krijg  Daarom heet dit chaning
-        let vragenOverzicht = document.getElementById("vragenTabel");
-        console.log(vragenTabel);
+    fetch(url + "thesis/list")
+        // Handle success
+        .then(response => response.json())  // zet om naar json object
+        .then(d => { // d = array met thesises, het object dat ik uit de response.json krijg  Daarom heet dit chaning
+            let vragenOverzicht = document.getElementById("vragenTabel");
+            console.log(vragenTabel);
 
-        let inhoudInnerhtml = "";
-        inhoudInnerhtml +=
-        `<tr>
+            let inhoudInnerhtml = "";
+            inhoudInnerhtml +=
+                `<tr>
             <th>Nummer</th>
             <th>Vraag</th>
             <th></th>
         </tr> 
-        ` 
+        `
 
-        console.log(vragenOverzicht.innerHTML);
+            console.log(vragenOverzicht.innerHTML);
 
-        for (let i = 0; i < d.length; i++){
-            inhoudInnerhtml +=
-            `<tr>
+            for (let i = 0; i < d.length; i++) {
+                inhoudInnerhtml +=
+                    `<tr>
                 <td>
                     ${i}
                 </td>
@@ -34,31 +39,32 @@
                 </td>
             </tr>   
             `
-        }
+            }
 
-        vragenOverzicht.innerHTML = inhoudInnerhtml;
-    })
-    .catch(err => console.log('Request Failed', err)); // Catch errors  
+            vragenOverzicht.innerHTML = inhoudInnerhtml;
+        })
+        .catch(err => console.log('Request Failed', err)); // Catch errors
+}
 
+async function verwijderVraag(idVraag) {
+    let res = await fetch('url.json');
+    let data = await res.json();
+    let url = data.link;
 
-
-function verwijderVraag(idVraag){
-    
-
-    fetch("http://localhost:8082/thesis/remove/"+idVraag,  { 
+    fetch(url + "thesis/remove/" + idVraag, {
         method: 'DELETE',
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
     })
 
-    .then (response => response.json)
-    .then (json => console.log(json))
-    .catch(err => console.log('Request Failed', err));
-    
+        .then(response => response.json)
+        .then(json => console.log(json))
+        .catch(err => console.log('Request Failed', err));
+
     location.reload();
 }
 
-function goToAdd(){
+function goToAdd() {
     location.href = "invoervraag.html"
 }

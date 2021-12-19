@@ -7,7 +7,7 @@ const voerInHeader = document.getElementById("voerIn");
 const successMessage = document.getElementById("success");
 const errorMessage = document.getElementById("error");
 
-function handleForm() {
+async function handleForm() {
     if (voornaam.value.length <= 2 || achternaam.value.length <= 2 ||
         geboortedatum == null ||
         email.value.length < 5) {
@@ -17,10 +17,10 @@ function handleForm() {
     errorMessage.style.display = "none";
 
 
-    voegKiezersGegevensToe();
+    await voegKiezersGegevensToe();
 }
 
-function voegKiezersGegevensToe() {
+async function voegKiezersGegevensToe() {
     const xhr = new XMLHttpRequest();
 
     const json = {
@@ -31,7 +31,9 @@ function voegKiezersGegevensToe() {
         "residence": woonplaats.value
     };
 
-    xhr.open('POST', 'http://localhost:8082/voter/add');
+    let res = await fetch('url.json');
+    let data = await res.json();
+    xhr.open('POST', data.link + 'voter/add');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(json));
 

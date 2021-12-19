@@ -13,7 +13,7 @@ function showKandidaatInvoer() {
     kandidaatInvoer.style.display = 'block';
 }
 
-function handlePartijForm() {
+async function handlePartijForm() {
 
     console.log(orientatie.value);
     if (partijNaam.value.length >= 2) {
@@ -24,7 +24,10 @@ function handlePartijForm() {
             "pga": orientatie.value
         };
 
-        xhr.open('POST', 'http://localhost:8082/politicalGroup/add');
+        let res = await fetch('url.json');
+        let data = await res.json();
+
+        xhr.open('POST', data.link + 'politicalGroup/add');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(json));
 

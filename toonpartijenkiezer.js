@@ -1,9 +1,11 @@
-function haalAllePartijenOp(){
-    let url = "http://localhost:8082/politicalGroup/list";
+async function haalAllePartijenOp() {
+    let res = await fetch('url.json');
+    let data = await res.json();
+    let url = data.link + "politicalGroup/list";
     let request = new XMLHttpRequest();
 
-    request.onreadystatechange = function(){
-        if(this.readyState == 4 ){
+    request.onreadystatechange = function () {
+        if (this.readyState == 4) {
             toonAllePartijen(JSON.parse(this.responseText));
             console.log(this.responseText);
         }
@@ -11,18 +13,20 @@ function haalAllePartijenOp(){
     request.open("GET", url);
     request.send();
 }
-function gaNaarTest(){
+
+function gaNaarTest() {
     window.location = "test.html?vraagid=-1";
 
 }
-function toonAllePartijen(partijen){
+
+function toonAllePartijen(partijen) {
     let partijenTabel = document.getElementById("partijenTabel");
     console.log(partijenTabel);
-   
-    let inhoudInnerhtml= "";
+
+    let inhoudInnerhtml = "";
 
     inhoudInnerhtml +=
-    `<tr>
+        `<tr>
         <th>Partij</th>
         <th>Orientatie</th>
         <th></th>
@@ -30,9 +34,9 @@ function toonAllePartijen(partijen){
       `
     console.log(partijenTabel.innerHTML);
 
-    for (let i = 0; i < partijen.length; i++){
+    for (let i = 0; i < partijen.length; i++) {
         inhoudInnerhtml +=
-        `<tr>
+            `<tr>
             <td>
                 ${partijen[i].name}
             </td>

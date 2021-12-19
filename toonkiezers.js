@@ -23,8 +23,11 @@ function toonAlleKiezers(kiezers) {
     }
 }
 
-function haalAlleVotersOp() {
-    let url = "http://localhost:8082/voter/list";
+async function haalAlleVotersOp() {
+    let res = await fetch('url.json');
+    let data = await res.json();
+    let url = data.link + "voter/list";
+    console.log(url);
     let request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if(this.readyState == 4) {
@@ -37,7 +40,6 @@ function haalAlleVotersOp() {
 }
 
 function proefData() {
-
     let persoon1 = {}
     persoon1.naam = "Fred";
     persoon1.leeftijd = 33;

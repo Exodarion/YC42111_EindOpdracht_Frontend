@@ -1,0 +1,5 @@
+{
+  "link": "https://spring-boot-app.azurewebsites.net/",
+  "url-local": "http://localhost:8082/",
+  "url-network": "https://spring-boot-app.azurewebsites.net/"
+}

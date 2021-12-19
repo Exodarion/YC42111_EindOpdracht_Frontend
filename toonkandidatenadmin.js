@@ -6,8 +6,10 @@ renderKandidaten();
 renderPartij();
 
 async function getKandidaten() {
+    let res = await fetch('url.json');
+    let data = await res.json();
     let partijId = myStorage.getItem("laatstAangekliktePartijAdmin")
-    let url = 'http://localhost:8082/politicalGroup/membersByPartyID/' + partijId;
+    let url = data.link + 'politicalGroup/membersByPartyID/' + partijId;
     try {
         let res = await fetch(url);
         return await res.json();
@@ -47,8 +49,10 @@ async function renderKandidaten() {
 }
 
 async function renderPartij() {
+    let res = await fetch('url.json');
+    let data = await res.json();
     let partijId = myStorage.getItem("laatstAangekliktePartijAdmin");
-    let url = `http://localhost:8082/politicalGroup/${partijId}`;
+    let url = data.link + `http://localhost:8082/politicalGroup/${partijId}`;
     try {
         let res = await (fetch(url));
         let partij = await res.json();

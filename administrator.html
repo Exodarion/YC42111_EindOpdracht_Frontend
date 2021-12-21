@@ -31,7 +31,26 @@
             <option value="MIDDEN">Midden</option>
         </select>
         <br><br>
-        <button class="btn btn-primary" onclick="handlePartijForm()" id="partijInvoerBtn">Voeg partij toe</button>
+        <button class="btn btn-primary" onclick="addPoliticalGroup()" id="partijInvoerBtn">Voeg partij toe</button>
+    </div>
+    <div id="kandidaatInvoer" class=text-center style="display: block">
+        <label>Kandidaat Invoer</label>
+        <br>
+        <label for="kandidaatFirstName">Voornaam:</label><br><input type="text" id="kandidaatFirstName" name="kandidaatFirstName">
+        <br><br>
+        <label for="kandidaatLastName">Achternaam:</label><br><input type="text" id="kandidaatLastName" name="kandidaatLastName">
+        <br><br>
+        <label for="kandidaatDOB">Geboortedatum:</label><br><input type="date" id="kandidaatDOB" name="kandidaatDOB">
+        <br><br>
+        <label for="partij">Partij:</label><br>
+        <!-- The content of this selection of political groups is dynamically handlded by JS-->
+        <!-- setPoliticalGroupNames() -->
+        <select name="partijSelectie" id=partijSelectie> 
+        </select>
+        <br><br>
+        <label for="kandidaatExpertise">Expertise:</label><br><input type="text" id="kandidaatExpertise" name="kandidaatExpertise">
+        <br><br>
+        <button class="btn btn-sm btn-primary" onclick="addCandidate()">Voer kandidaat in</button>
     </div>
 
     <div id="kandidaatInvoer" style="display: none">

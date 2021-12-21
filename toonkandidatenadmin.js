@@ -62,8 +62,3 @@ async function renderPartij() {
         console.log(error);
     }
 }
-
-
-function voerKandidaatIn() {
-    //Story 9
-}

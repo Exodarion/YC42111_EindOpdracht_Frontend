@@ -1,3 +1,5 @@
+
+
 async function haalAllePartijenOp() {
     let res = await fetch('url.json');
     let data = await res.json();
@@ -15,7 +17,7 @@ async function haalAllePartijenOp() {
 }
 
 function gaNaarTest() {
-    window.location = "test.html?vraagid=-1";
+    window.location = "vraagBeantwoorden.html?vraagid=0";
 
 }
 
@@ -53,6 +55,9 @@ function toonAllePartijen(partijen) {
         `
     }
     partijenTabel.innerHTML = inhoudInnerhtml;
+
+    console.log(localStorage.getItem("voterid"));
+
 }
 
 function toonKandidaten(id) {

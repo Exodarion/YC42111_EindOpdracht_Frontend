@@ -39,7 +39,7 @@ function toonAllePartijen(partijen){
                 ${partijen[i].pga}
             </td>
             <td>
-                <button class="btn btn-primary" onclick="toonKandidaten(${partijen[i].id})">
+                <button class="btn btn-info" onclick="toonKandidaten(${partijen[i].id})">
                     Toon kandidaten
                 </button>
                 <button class="btn btn-primary" onclick="beantwoordVragen(${partijen[i].id})">

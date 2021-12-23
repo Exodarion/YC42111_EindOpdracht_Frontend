@@ -3,7 +3,6 @@ const achternaam = document.getElementById("achternaam");
 const geboortedatum = document.getElementById("geboortedatum");
 const email = document.getElementById("email");
 const woonplaats = document.getElementById("woonplaats");
-const voerInHeader = document.getElementById("voerIn");
 const successMessage = document.getElementById("success");
 const errorMessage = document.getElementById("error");
 
@@ -46,9 +45,7 @@ async function voegKiezersGegevensToe() {
     .then(data => {
                 console.log(data.id);
                 localStorage.setItem("voterid", data.id);
-                console.log(localStorage.getItem("voterid"));
-
-                              
+                console.log(localStorage.getItem("voterid"))
             }
         )
     .catch(err => console.log('Request Failed', err));

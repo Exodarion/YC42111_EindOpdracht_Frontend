@@ -50,6 +50,7 @@ async function verwijderVraag(idVraag) {
     let res = await fetch('url.json');
     let data = await res.json();
     let url = data.link;
+    console.log(idVraag);
 
     fetch(url + "thesis/remove/" + idVraag, {
         method: 'DELETE',

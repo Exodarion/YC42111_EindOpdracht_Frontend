@@ -4,7 +4,7 @@ async function laadAnwoordenEnVragen(){
     
     let res = await fetch('url.json');
     let data = await res.json();
-    let url = data.link + "voter/showAnswers/"+ localStorage.getItem("voterid");
+    let url = data.link + "politicalGroup/showAnswers/"+ localStorage.getItem("partijid");
 
     fetch(url, {
         method: 'GET',

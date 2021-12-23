@@ -54,6 +54,11 @@ function toonAllePartijen(partijen){
     partijenTabel.innerHTML = inhoudInnerhtml;
 }
 
+function beantwoordVragen(id){
+    localStorage.setItem("partijid", id);
+    location.href = "beantwoordenStellingenPartij.html?vraagid=0";
+}
+
 function toonKandidaten(id) {
     let myStorage = window.localStorage;
     myStorage.setItem("laatstAangekliktePartijAdmin", id);

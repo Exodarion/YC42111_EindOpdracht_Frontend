@@ -1,6 +1,7 @@
 const kandidatenTabel = document.getElementById("kandidatenTabel");
 let myStorage = window.localStorage;
 const partijSpan = document.getElementById("partij");
+var partijData;
 
 renderKandidaten();
 renderPartij();
@@ -12,7 +13,8 @@ async function getKandidaten() {
     let url = data.link + 'politicalGroup/membersByPartyID/' + partijId;
     try {
         let res = await fetch(url);
-        return await res.json();
+        partijData = await res.json();
+        return partijData;
     } catch (error) {
         console.log(error);
     }
@@ -52,12 +54,12 @@ async function renderPartij() {
     let res = await fetch('url.json');
     let data = await res.json();
     let partijId = myStorage.getItem("laatstAangekliktePartijAdmin");
-    let url = data.link + `politicalGroup/membersByPartyID/${partijId}`;
+    let url = data.link + `politicalGroup/byID/${partijId}`;
     try {
         let res = await (fetch(url));
         let partij = await res.json();
         console.log(partij);
-        partijSpan.innerText = partij[0].politicalGroupName;
+        partijSpan.innerText = partij.name;
     } catch (error) {
         console.log(error);
     }

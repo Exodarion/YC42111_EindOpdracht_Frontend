@@ -46,7 +46,7 @@ function addCandidate()
     //Requirements for the data to be considered valid
     if(refData.firstnameData.value.length < 1
     || refData.lastnameData.value.length < 1
-    || refData.DOBData.value == null
+    || refData.DOBData.value == ""
     || refData.expertiseData.value.length < 1)
     { console.log("Return here plx"); return; }
 
@@ -57,7 +57,7 @@ function addCandidate()
         "lastName": refData.lastnameData.value,
         "dob": refData.DOBData.value,
         "expertise": refData.expertiseData.value,
-        "partyID": parseInt(refData.pgData.value) + 1
+        "partyID": partijData[parseInt(refData.pgData.value)].id // Get the party ID, using the index from the pgData value provided
     };
 
     sendPostRequest(json, 'candidate/add', refData);
@@ -76,7 +76,7 @@ function addPoliticalGroup() {
     const json = 
     {
         "name":refData.partijNaam.value,
-        "pga": refData.orientatie.value
+        "pga": refData.orientatie.value,
     };
 
     sendPostRequest(json, 'politicalGroup/add', refData)

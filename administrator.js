@@ -1,16 +1,16 @@
 //Holds all the windows that can be displayed in the administrator menu
-var windows = 
-{ 
-    "1PartyAdd" : document.getElementById("partijInvoer"),
-    "2CandidateAdd" : document.getElementById("kandidaatInvoer"),
-    "3Partyremove" : document.getElementById("partijverwijderInvoer"),
-    "4Candidateremove" : document.getElementById("kandidaatverwijderInvoer"),
-    // EVA
-    "5QuestionAdd"  : document.getElementById("vraagInvoer")
-}
+var windows =
+    {
+        "1PartyAdd": document.getElementById("partijInvoer"),
+        "2CandidateAdd": document.getElementById("kandidaatInvoer"),
+        "3Partyremove": document.getElementById("partijverwijderInvoer"),
+        "4Candidateremove": document.getElementById("kandidaatverwijderInvoer"),
+        "5QuestionAdd": document.getElementById("vraagInvoer"),
+        "6QuestionRemove": document.getElementById("vraagVerwijderInvoer")
+    }
 var partijData;
 var candidateData;
-let questionData;
+var questionData;
 
 //Hide all windows by default
 hideWindows();
@@ -21,60 +21,65 @@ refreshGetData();
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //Hide All Windows
-function hideWindows () 
-{
-    for(let element in windows)
+function hideWindows() {
+    for (let element in windows)
         windows[element].style.display = 'none';
 }
 
 //Show window specified by the 'indicator'
-function showWindow (indicator) 
-{
-    for(let element in windows)
-    {
+function showWindow(indicator) {
+    for (let element in windows) {
         let object = windows[element];
-        if(element.startsWith(indicator))
+        if (element.startsWith(indicator))
             object.style.display = 'block';
         else
             object.style.display = 'none';
     }
 }
 
-function refreshGetData () {
+function refreshGetData() {
     getallCandidates();
     getPoliticalGroups();
+    getAllQuestions();
 }
 
 //Dynamically set selection names to the party names provided
-function setPoliticalGroupNames(object)
-{
+function setPoliticalGroupNames(object) {
     //get reference to the selection element
     let selectie = document.getElementById(object);
     selectie.innerHTML = ""; //On Refresh, needs to be reset to empty
-    for(i = 0; i < partijData.length; i++)
-    {
+    for (i = 0; i < partijData.length; i++) {
         //manually add new html element inside the select section
         selectie.insertAdjacentHTML
-        ('beforeend', 
-        '<option value="' + i + '" >' + partijData[i].name + '</option>');
+        ('beforeend',
+            '<option value="' + i + '" >' + partijData[i].name + '</option>');
     }
 }
 
 //Dynamically set selection names to the party names provided
-function setCandidateNames(object)
-{
+function setCandidateNames(object) {
     //get reference to the selection element
     let selectie = document.getElementById(object);
     selectie.innerHTML = ""; //On Refresh, needs to be reset to empty
-    for(i = 0; i < candidateData.length; i++)
-    {
+    for (i = 0; i < candidateData.length; i++) {
         //manually add new html element inside the select section
         selectie.insertAdjacentHTML
-        ('beforeend', 
-        '<option value="' + i + '" >' + candidateData[i].firstName + " " + 
-        candidateData[i].lastName + " : " +
-        candidateData[i].politicalGroupName +
-        '</option>');
+        ('beforeend',
+            '<option value="' + i + '" >' + candidateData[i].firstName + " " +
+            candidateData[i].lastName + " : " +
+            candidateData[i].politicalGroupName +
+            '</option>');
+    }
+}
+
+function setQuestionNames(object) {
+    let selectie = document.getElementById(object);
+    selectie.innerHTML = "";
+    for (i = 0; i < questionData.length; i++) {
+        selectie.insertAdjacentHTML(
+            'beforeend',
+            '<option value="' + i + '" >' + questionData[i].question +
+            '</option>');
     }
 }
 
@@ -83,7 +88,7 @@ function setCandidateNames(object)
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //Send a post request to the backend given set data
-async function sendDeleteRequest(object, DataUrl, dataObject){
+async function sendDeleteRequest(object, DataUrl, dataObject) {
     //get local or network database URL first
     let res = await fetch('url.json');
     let data = await res.json();
@@ -91,42 +96,42 @@ async function sendDeleteRequest(object, DataUrl, dataObject){
     let selectie = document.getElementById(object);
     let url = data.link + DataUrl + dataObject[selectie.value].id;
 
-    await fetch(url, {method : 'Delete'});
+    await fetch(url, {method: 'Delete'});
     refreshGetData(); //Refresh data after update
-} 
+}
 
 //Manually delete a candidate from a political group without refreshing
-async function deleteCandidateFromParty(arrayID)
-{
+async function deleteCandidateFromParty(arrayID) {
     //get local or network database URL first
     let res = await fetch('url.json');
     let data = await res.json();
     let url = data.link + "candidate/remove/" + candidateData[arrayID].id;
 
-    await fetch(url, {method : 'Delete'});
+    await fetch(url, {method: 'Delete'});
 }
 
-function removeCandidate() 
-{
+function removeCandidate() {
     sendDeleteRequest("kandidaatSelectie", "candidate/remove/", candidateData);
 }
 
-function removePG() 
-{
+function removePG() {
     //First remove all candidates from this group before removing the group
     //If not done, the candidates that are associated with this group will have a broken link
     let selectie = document.getElementById("partijSelectie2");
     let partyID = partijData[selectie.value].id;
-    for(let i = 0; i < candidateData.length; i++)
-    {
+    for (let i = 0; i < candidateData.length; i++) {
         let candidatePartyID = candidateData[i].partyID;
         console.log("candidatePartyID " + candidatePartyID);
         console.log("partyID " + partyID);
-        if(candidatePartyID == partyID)
+        if (candidatePartyID == partyID)
             deleteCandidateFromParty(i);
     }
 
     sendDeleteRequest("partijSelectie2", "politicalGroup/remove/", partijData);
+}
+
+function removeQuestion() {
+    sendDeleteRequest("vraagSelectie", "thesis/remove/", questionData)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -134,7 +139,7 @@ function removePG()
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //Send a post request to the backend given set data
-async function sendPostRequest(JsonData, endpointURL, refData){
+async function sendPostRequest(JsonData, endpointURL, refData) {
     //get local or network database URL first
     const xhr = new XMLHttpRequest();
     let res = await fetch('url.json');
@@ -149,17 +154,16 @@ async function sendPostRequest(JsonData, endpointURL, refData){
             if (xhr.status === 200) {
                 successMessage.style.display = 'block';
                 //empty the content of all ref elements after execution
-                for(let element in refData)
+                for (let element in refData)
                     refData[element].value = '';
-                
+
                 refreshGetData(); //Refresh data after update
             }
         }
     }
-} 
+}
 
-function addCandidate() 
-{
+function addCandidate() {
     //cache reference data here first
     let refData = {
         "firstnameData": document.getElementById("kandidaatFirstName"),
@@ -170,12 +174,14 @@ function addCandidate()
     }
 
     //Requirements for the data to be considered valid
-    if(refData.firstnameData.value.length < 1
-    || refData.lastnameData.value.length < 1
-    || refData.DOBData.value == ""
-    || refData.pgData.value == ""
-    || refData.expertiseData.value.length < 1)
-    { console.log("Return here plx"); return; }
+    if (refData.firstnameData.value.length < 1
+        || refData.lastnameData.value.length < 1
+        || refData.DOBData.value == ""
+        || refData.pgData.value == ""
+        || refData.expertiseData.value.length < 1) {
+        console.log("Return here plx");
+        return;
+    }
 
     console.log("Execute addCandidate");
     //Create the Json object to be sent to the backend
@@ -191,38 +197,38 @@ function addCandidate()
 }
 
 function addPoliticalGroup() {
-    let refData = 
-    {
-        "partijNaam" : document.getElementById("partijnaam"),
-        "orientatie" : document.getElementById("orientatie")
-    }
+    let refData =
+        {
+            "partijNaam": document.getElementById("partijnaam"),
+            "orientatie": document.getElementById("orientatie")
+        }
 
     if (refData.partijNaam.value.length < 2 || refData.orientatie == null)
         return;
 
-    const json = 
-    {
-        "name":refData.partijNaam.value,
-        "pga": refData.orientatie.value,
-    };
+    const json =
+        {
+            "name": refData.partijNaam.value,
+            "pga": refData.orientatie.value,
+        };
 
     sendPostRequest(json, 'politicalGroup/add', refData)
 }
-//Eva
-function addVraag(){
-    let refData = 
-    {
-        "question" : document.getElementById("question").value
-    };
 
-    if (refData.partijNaam.value.length < 2 || refData.orientatie == null)
+function addQuestion() {
+    let refData =
+        {
+            "question": document.getElementById("vraag")
+        };
+
+    if (refData.question.length < 4)
         return;
 
 
     const json =
-    {
-        "question": refData.question.value
-    };
+        {
+            "question": refData.question.value
+        };
 
     sendPostRequest(json, 'thesis/add', refData);
 
@@ -233,14 +239,14 @@ function addVraag(){
 // GET REQUESTS
 ///////////////////////////////////////////////////////////////////////////////////////
 
-async function getPoliticalGroups(){
+async function getPoliticalGroups() {
     let res = await fetch('url.json');
     let data = await res.json();
     let url = data.link + "politicalGroup/list";
     let request = new XMLHttpRequest();
 
-    request.onreadystatechange = function(){
-        if(this.readyState == 4 ){
+    request.onreadystatechange = function () {
+        if (this.readyState == 4) {
             partijData = JSON.parse(this.responseText);
             setPoliticalGroupNames("partijSelectie");
             setPoliticalGroupNames("partijSelectie2");
@@ -250,7 +256,7 @@ async function getPoliticalGroups(){
     request.send();
 }
 
-async function getallCandidates(){
+async function getallCandidates() {
     let res = await fetch('url.json');
     let data = await res.json();
     let url = data.link + "candidate/list";
@@ -260,4 +266,16 @@ async function getallCandidates(){
     console.log(candidateData);
 
     setCandidateNames("kandidaatSelectie");
+}
+
+async function getAllQuestions() {
+    let res = await fetch('url.json');
+    let data = await res.json();
+    let url = data.link + "thesis/list";
+
+    res = await fetch(url);
+    questionData = await res.json();
+    console.log(questionData);
+
+    setQuestionNames("vraagSelectie");
 }

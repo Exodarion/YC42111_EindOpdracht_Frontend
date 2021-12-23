@@ -24,22 +24,30 @@
       <button id="vraagBtn" onclick="showWindow(5)" class="btn btn primary">
         Vraag Toevoegen
       </button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
       <button
         id="kandidaatverwijderBtn"
         onclick="showWindow(3)"
         class="btn btn primary"
       >
-        Partij Verwijderen</button
+        Verwijder Partij</button
       >&nbsp;&nbsp;|&nbsp;&nbsp;
       <button
         id="partijverwijderBtn"
         onclick="showWindow(4)"
         class="btn btn primary"
       >
-        Kandidaat Verwijderen
-      </button>
+        Verwijder Kandidaat
+      </button>&nbsp;&nbsp;|&nbsp;&nbsp;
+      <button
+              id="vraagVerwijderBtn"
+              onclick="showWindow(6)"
+              class="btn btn primary"
+      >
+        Verwijder vraag
+      </button>&nbsp;&nbsp;
+
       <br />
       <br />
       <a href="toonpartijenadmin.html">Toon alle partijen</a>
@@ -117,18 +125,17 @@
         </button>
       </div>
 
-      <!-- Eva -->
       <div id="vraagInvoer" style="display: block">
         <label for="vraag">Voer vraag in:</label><br /><input
           type="text"
-          id="question "
-          name="question"
+          id="vraag"
+          name="vraag"
         />
         <br /><br />
 
         <button
           class="btn btn-primary"
-          onclick="addVraag()"
+          onclick="addQuestion()"
           id="vraagInvoerBtn"
         >
           Voeg vraag toe
@@ -142,7 +149,7 @@
         <br />
         <br />
         <button
-          class="btn btn-primary"
+          class="btn btn-danger"
           onclick="removePG()"
           id="verwijderPGBtn"
         >
@@ -156,7 +163,7 @@
         <br />
         <br />
         <button
-          class="btn btn-primary"
+          class="btn btn-danger"
           onclick="removeCandidate()"
           id="verwijderkandidaatBtn"
         >
@@ -164,9 +171,21 @@
         </button>
       </div>
 
-      <!-- <div id="kandidaatInvoer" style="display: none">
+        <div id="vraagVerwijderInvoer" style="display: block">
+          <!-- The content of this selection of political groups is dynamically handlded by JS-->
+          <!-- setPoliticalGroupNames() -->
+          <select name="vraagSelectie" id="vraagSelectie"></select>
+          <br />
+          <br />
+          <button
+                  class="btn btn-danger"
+                  onclick="removeQuestion()"
+                  id="verwijderVraagBtn"
+          >
+            Verwijder Vraag
+          </button>
+        </div>
 
-    </div> -->
     </div>
 
     <script src="administrator.js"></script>

@@ -9,8 +9,12 @@
 <body>
 
 <div class="container text-center">
-    <button id="kandidaatBtn" onclick="showKandidaatInvoer()" class="btn btn primary">Kandidaat Toevoegen</button>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <button id="partijBtn" onclick="showPartijInvoer()" class="btn btn primary">Partij Toevoegen</button>
+    <button id="partijBtn" onclick="showWindow(1)" class="btn btn primary">Partij Toevoegen</button>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <button id="kandidaatBtn" onclick="showWindow(2)" class="btn btn primary">Kandidaat Toevoegen</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button id="kandidaatverwijderBtn" onclick="showWindow(3)" class="btn btn primary">Partij Verwijderen</button>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <button id="partijverwijderBtn" onclick="showWindow(4)" class="btn btn primary">Kandidaat Verwijderen</button>
+    <br>
     <br>
     <a href="toonpartijenadmin.html">Toon alle partijen</a>
     <br>
@@ -53,6 +57,24 @@
         <label for="kandidaatExpertise">Expertise:</label><br><input type="text" id="kandidaatExpertise" name="kandidaatExpertise">
         <br><br>
         <button class="btn btn-sm btn-primary" onclick="addCandidate()">Voeg kandidaat toe</button>
+    </div>
+    <div id="partijverwijderInvoer" style="display: block">
+        <!-- The content of this selection of political groups is dynamically handlded by JS-->
+        <!-- setPoliticalGroupNames() -->
+        <select name="partijSelectie2" id=partijSelectie2> 
+        </select>
+        <br>
+        <br>
+        <button class="btn btn-primary" onclick="removePG()" id="verwijderPGBtn">Verwijder Partij</button>
+    </div>
+    <div id="kandidaatverwijderInvoer" style="display: block">
+        <!-- The content of this selection of political groups is dynamically handlded by JS-->
+        <!-- setPoliticalGroupNames() -->
+        <select name="kandidaatSelectie" id=kandidaatSelectie> 
+        </select>
+        <br>
+        <br>
+        <button class="btn btn-primary" onclick="removeCandidate()" id="verwijderkandidaatBtn">Verwijder Kandidaat</button>
     </div>
 
     <div id="kandidaatInvoer" style="display: none">

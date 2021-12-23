@@ -24,6 +24,9 @@ async function laadVragen() {
                 document.getElementById("vraag").innerHTML = vraag.question;
                 console.log(localStorage.getItem("voterid"));
                 vraagId = vraag.id;
+                if (vraagId == -23){
+                    window.location = "toonAntwoordenKiezer.html";
+                }
                 document.getElementById("volgendevraag").onclick = volgendeVraag;              
             }
         )
@@ -47,7 +50,7 @@ async function antwoordInvoer(){
     
         let res = await fetch('url.json');
         let data = await res.json();
-        let url = data.link + "answer/add/" + localStorage.getItem("voterid");
+        let url = data.link + "answer/voter/add/" + localStorage.getItem("voterid");
         console.log(localStorage.getItem("voterid"));
         console.log(antwoord.value);
 

@@ -4,10 +4,13 @@ var windows =
     "1PartyAdd" : document.getElementById("partijInvoer"),
     "2CandidateAdd" : document.getElementById("kandidaatInvoer"),
     "3Partyremove" : document.getElementById("partijverwijderInvoer"),
-    "4Candidateremove" : document.getElementById("kandidaatverwijderInvoer")
+    "4Candidateremove" : document.getElementById("kandidaatverwijderInvoer"),
+    // EVA
+    "5QuestionAdd"  : document.getElementById("vraagInvoer")
 }
 var partijData;
 var candidateData;
+let questionData;
 
 //Hide all windows by default
 hideWindows();
@@ -204,6 +207,26 @@ function addPoliticalGroup() {
     };
 
     sendPostRequest(json, 'politicalGroup/add', refData)
+}
+//Eva
+function addVraag(){
+    let refData = 
+    {
+        "question" : document.getElementById("question").value
+    };
+
+    if (refData.partijNaam.value.length < 2 || refData.orientatie == null)
+        return;
+
+
+    const json =
+    {
+        "question": refData.question.value
+    };
+
+    sendPostRequest(json, 'thesis/add', refData);
+
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////

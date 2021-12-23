@@ -1,87 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Admin Control Panel</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container text-center">
+      <button id="partijBtn" onclick="showWindow(1)" class="btn btn primary">
+        Partij Toevoegen
+      </button>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <button id="kandidaatBtn" onclick="showWindow(2)" class="btn btn primary">
+        Kandidaat Toevoegen
+      </button>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <!-- Eva -->
+      <button id="vraagBtn" onclick="showWindow(5)" class="btn btn primary">
+        Vraag Toevoegen
+      </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<div class="container text-center">
-    <button id="partijBtn" onclick="showWindow(1)" class="btn btn primary">Partij Toevoegen</button>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <button id="kandidaatBtn" onclick="showWindow(2)" class="btn btn primary">Kandidaat Toevoegen</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button id="kandidaatverwijderBtn" onclick="showWindow(3)" class="btn btn primary">Partij Verwijderen</button>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <button id="partijverwijderBtn" onclick="showWindow(4)" class="btn btn primary">Kandidaat Verwijderen</button>
-    <br>
-    <br>
-    <a href="toonpartijenadmin.html">Toon alle partijen</a>
-    <br>
-    <br>
-    <a href="toonallekandidaten.html">Toon alle kandidaten</a>
-    <br>
-    <br>
-    <p id="successMessage" class="text-success" style="display: none">
+      <button
+        id="kandidaatverwijderBtn"
+        onclick="showWindow(3)"
+        class="btn btn primary"
+      >
+        Partij Verwijderen</button
+      >&nbsp;&nbsp;|&nbsp;&nbsp;
+      <button
+        id="partijverwijderBtn"
+        onclick="showWindow(4)"
+        class="btn btn primary"
+      >
+        Kandidaat Verwijderen
+      </button>
+      <br />
+      <br />
+      <a href="toonpartijenadmin.html">Toon alle partijen</a>
+      <br />
+      <br />
+      <a href="toonallekandidaten.html">Toon alle kandidaten</a>
+      <br />
+      <br />
+      <a href="toonvragenadministrator.html">Toon alle vragen</a>
+      <br />
+      <br />
+      <p id="successMessage" class="text-success" style="display: none">
         Uw gegevens zijn succesvol ingevoerd.
-    </p>
-    <br>
-    <br>
-    <div id="partijInvoer" style="display: block">
-        <label for="partijnaam">Partijnaam:</label><br><input type="text" id="partijnaam" name="partijnaam">
-        <br><br>
-        <label for="orientatie">Orientatie:</label><br>
+      </p>
+      <br />
+      <br />
+
+      <div id="partijInvoer" style="display: block">
+        <label for="partijnaam">Partijnaam:</label><br /><input
+          type="text"
+          id="partijnaam"
+          name="partijnaam"
+        />
+        <br /><br />
+        <label for="orientatie">Orientatie:</label><br />
         <select name="orientatie" id="orientatie">
-            <option value="LINKS">Links</option>
-            <option value="RECHTS">Rechts</option>
-            <option value="MIDDEN">Midden</option>
+          <option value="LINKS">Links</option>
+          <option value="RECHTS">Rechts</option>
+          <option value="MIDDEN">Midden</option>
         </select>
-        <br><br>
-        <button class="btn btn-primary" onclick="addPoliticalGroup()" id="partijInvoerBtn">Voeg partij toe</button>
-    </div>
-    <div id="kandidaatInvoer" class=text-center style="display: block">
+        <br /><br />
+        <button
+          class="btn btn-primary"
+          onclick="addPoliticalGroup()"
+          id="partijInvoerBtn"
+        >
+          Voeg partij toe
+        </button>
+      </div>
+
+      <div id="kandidaatInvoer" class="text-center" style="display: block">
         <label>Kandidaat Invoer</label>
-        <br>
-        <label for="kandidaatFirstName">Voornaam:</label><br><input type="text" id="kandidaatFirstName" name="kandidaatFirstName">
-        <br><br>
-        <label for="kandidaatLastName">Achternaam:</label><br><input type="text" id="kandidaatLastName" name="kandidaatLastName">
-        <br><br>
-        <label for="kandidaatDOB">Geboortedatum:</label><br><input type="date" id="kandidaatDOB" name="kandidaatDOB">
-        <br><br>
-        <label for="partij">Partij:</label><br>
+        <br />
+        <label for="kandidaatFirstName">Voornaam:</label><br /><input
+          type="text"
+          id="kandidaatFirstName"
+          name="kandidaatFirstName"
+        />
+        <br /><br />
+        <label for="kandidaatLastName">Achternaam:</label><br /><input
+          type="text"
+          id="kandidaatLastName"
+          name="kandidaatLastName"
+        />
+        <br /><br />
+        <label for="kandidaatDOB">Geboortedatum:</label><br /><input
+          type="date"
+          id="kandidaatDOB"
+          name="kandidaatDOB"
+        />
+        <br /><br />
+        <label for="partij">Partij:</label><br />
         <!-- The content of this selection of political groups is dynamically handlded by JS-->
         <!-- setPoliticalGroupNames() -->
-        <select name="partijSelectie" id=partijSelectie> 
-        </select>
-        <br><br>
-        <label for="kandidaatExpertise">Expertise:</label><br><input type="text" id="kandidaatExpertise" name="kandidaatExpertise">
-        <br><br>
-        <button class="btn btn-sm btn-primary" onclick="addCandidate()">Voeg kandidaat toe</button>
-    </div>
-    <div id="partijverwijderInvoer" style="display: block">
+        <select name="partijSelectie" id="partijSelectie"></select>
+        <br /><br />
+        <label for="kandidaatExpertise">Expertise:</label><br /><input
+          type="text"
+          id="kandidaatExpertise"
+          name="kandidaatExpertise"
+        />
+        <br /><br />
+        <button class="btn btn-sm btn-primary" onclick="addCandidate()">
+          Voeg kandidaat toe
+        </button>
+      </div>
+
+      <!-- Eva -->
+      <div id="vraagInvoer" style="display: block">
+        <label for="vraag">Voer vraag in:</label><br /><input
+          type="text"
+          id="question "
+          name="question"
+        />
+        <br /><br />
+
+        <button
+          class="btn btn-primary"
+          onclick="addVraag()"
+          id="vraagInvoerBtn"
+        >
+          Voeg vraag toe
+        </button>
+      </div>
+
+      <div id="partijverwijderInvoer" style="display: block">
         <!-- The content of this selection of political groups is dynamically handlded by JS-->
         <!-- setPoliticalGroupNames() -->
-        <select name="partijSelectie2" id=partijSelectie2> 
-        </select>
-        <br>
-        <br>
-        <button class="btn btn-primary" onclick="removePG()" id="verwijderPGBtn">Verwijder Partij</button>
-    </div>
-    <div id="kandidaatverwijderInvoer" style="display: block">
+        <select name="partijSelectie2" id="partijSelectie2"></select>
+        <br />
+        <br />
+        <button
+          class="btn btn-primary"
+          onclick="removePG()"
+          id="verwijderPGBtn"
+        >
+          Verwijder Partij
+        </button>
+      </div>
+      <div id="kandidaatverwijderInvoer" style="display: block">
         <!-- The content of this selection of political groups is dynamically handlded by JS-->
         <!-- setPoliticalGroupNames() -->
-        <select name="kandidaatSelectie" id=kandidaatSelectie> 
-        </select>
-        <br>
-        <br>
-        <button class="btn btn-primary" onclick="removeCandidate()" id="verwijderkandidaatBtn">Verwijder Kandidaat</button>
+        <select name="kandidaatSelectie" id="kandidaatSelectie"></select>
+        <br />
+        <br />
+        <button
+          class="btn btn-primary"
+          onclick="removeCandidate()"
+          id="verwijderkandidaatBtn"
+        >
+          Verwijder Kandidaat
+        </button>
+      </div>
+
+      <!-- <div id="kandidaatInvoer" style="display: none">
+
+    </div> -->
     </div>
 
-    <div id="kandidaatInvoer" style="display: none">
-
-    </div>
-</div>
-
-<script src="administrator.js"></script>
-</body>
+    <script src="administrator.js"></script>
+  </body>
 </html>

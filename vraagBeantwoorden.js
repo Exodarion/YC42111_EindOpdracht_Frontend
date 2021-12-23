@@ -2,7 +2,7 @@ laadVragen();
 
 let vraagId;
 let antwoord;
-let vorigId = -1;
+
 
 
 async function laadVragen() {
@@ -12,7 +12,7 @@ async function laadVragen() {
     let res = await fetch('url.json');
     let data = await res.json();
     var url = data.link + "thesis/showByOne/" + vraagid;
-    console.log(vorigId);
+    
     fetch(url, {
         method: 'GET',
         headers: {
@@ -38,11 +38,8 @@ function volgendeVraag() {
     let url_string = window.location.href; //window.location.href
     let url = new URL(url_string);
     let vraagid = url.searchParams.get("vraagid");
-    if (vraagId == vorigId){
-        window.location = "toonAntwoordenKiezer.html";
-    } else {
-        window.location = "vraagBeantwoorden.html?vraagid=" + (++vraagid);
-    }
+    window.location = "vraagBeantwoorden.html?vraagid=" + (++vraagid);
+    
     
 }
 
@@ -60,9 +57,7 @@ async function antwoordInvoer(){
                 "id": vraagId
             }
         }
-
-        vorigId = vraagId;
-    
+   
     
     fetch(url, {
         method: 'POST',

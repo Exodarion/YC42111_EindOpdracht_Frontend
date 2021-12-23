@@ -42,12 +42,21 @@ function toonAllePartijen(partijen){
                 <button class="btn btn-primary" onclick="toonKandidaten(${partijen[i].id})">
                     Toon kandidaten
                 </button>
+                <button class="btn btn-primary" onclick="beantwoordVragen(${partijen[i].id})">
+                    Beantwoord vragen
+                </button>
             </td>
+           
         
         </tr>
         `
     }
     partijenTabel.innerHTML = inhoudInnerhtml;
+}
+
+function beantwoordVragen(id){
+    localStorage.setItem("partijid", id);
+    location.href = "beantwoordenStellingenPartij.html?vraagid=0";
 }
 
 function toonKandidaten(id) {
